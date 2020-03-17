@@ -1,5 +1,5 @@
 <template>
-  <div>123</div>
+  <div>nav-header</div>
 </template>
 
 <script>
