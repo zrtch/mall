@@ -1,6 +1,6 @@
 <template>
   <div>
-    home
+   <h1>HOME</h1>
     <nav-header></nav-header>
     <router-view></router-view>
     <nav-footer></nav-footer>
