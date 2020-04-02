@@ -40,19 +40,6 @@
           </div>
            <div class="item-menu">
             <span>redmi手机</span>
-             <div class="children">
-              <ul>
-                <li class="product" v-for="(item,index) in phoneList" :key="index">
-                  <a v-bind:href="'/#/product/'+item.id" target="_blank">
-                    <div class="pro-img">
-                      <img :src="item.mainImage" :alt="item.subtitle">
-                    </div>
-                    <div class="pro-name">{{item.name}}</div>
-                    <div class="pro-price">{{item.price | currency}}</div>
-                  </a>
-                </li>
-              </ul>
-            </div>
           </div>
            <div class="item-menu">
             <span>电视</span>
@@ -154,12 +141,11 @@ methods:{
   getProductList(){
     this.axios.get('/products',{
     params:{
-      categoryId:'100012'
+      categoryId:'100012',
+      pageSize:6
     }
     }).then((res)=>{
-     if(res.list.length>=6){
-       this.phoneList=res.list.slice(0,6)
-     }
+     this.phoneList=res.list;
     })
   },
   goToCart(){
@@ -229,13 +215,13 @@ methods:{
             }
           }
         }
-        .header-menu{
+         .header-menu{
           display:inline-block;
-          padding-left:209px;
           width:643px;
+          padding-left:209px;
           .item-menu{
-            display: inline-block;
-            color:#333;
+            display:inline-block;
+            color:#333333;
             font-weight:bold;
             font-size:16px;
             line-height:112px;
@@ -247,63 +233,62 @@ methods:{
               color:$colorA;
               .children{
                 height:220px;
-                opacity: 1;
+                opacity:1;
               }
             }
             .children{
-              position: absolute;
+              position:absolute;
               top:112px;
               left:0;
-              height:0;
-              opacity: 0;
               width:1226px;
-              overflow: hidden;
-              border-top:1px solid #e5e5e5;
-              box-shadow: 0px 7px 6px 0px rgba(0,0,0,0.11);
-              z-index: 10px;
-              transition: all .5s;
-              background-color:#fff;
-            }
-            .product{
-              position:relative;
-              float:left;
-              width:16.6%;
-              height:220px;
-              font-size:12px;
-              line-height:12px; 
-              text-align: center;
-              a{
-                display: inline-block;
-
-              }
-              img{
-                width:auto;
-                height:111px;
-                margin-top:26px
-              }
-              .pro-img{
-                height:137px;
-              }
-              .pro-name{
-                margin-top: 19px;
-                font-weight: bold;
-                margin-bottom:8px;
-                color:$colorB
-              }
-              .pro-price{
-                color:$colorA;
-              }
-               &:before{
-                content:' ';
-                position:absolute;
-                top:28px;
-                right:0;
-                border-left:1px solid $colorF;
-                height:100px;
-                width:1px;
-              }
-              &:last-child:before{
-                display:none;
+              height:0;
+              opacity:0;
+              overflow:hidden;
+              border-top:1px solid #E5E5E5;
+              box-shadow:0px 7px 6px 0px rgba(0, 0, 0, 0.11);
+              z-index: 10;
+              transition:all .5s;
+              background-color: #ffffff;
+              .product{
+                position:relative;
+                float:left;
+                width:16.6%;
+                height:220px;
+                font-size:12px;
+                line-height:12px;
+                text-align: center;
+                a{
+                  display:inline-block;
+                }
+                img{
+                  width:auto;
+                  height:111px;
+                  margin-top:26px;
+                }
+                .pro-img{
+                  height:137px;
+                }
+                .pro-name{
+                  font-weight:bold;
+                  margin-top:19px;
+                  margin-bottom:8px;
+                  color:$colorB;
+                }
+                .pro-price{
+                  color:$colorA;
+                }
+                &:before{
+                  content:' ';
+                  position:absolute;
+                  top:28px;
+                  right:0;
+                  border-left:1px solid $colorF;
+                  height:100px;
+                  width:1px;
+                }
+                &:last-child:before{
+                  display:none;
+                }
               }
             }
           }
